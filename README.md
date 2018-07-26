@@ -9,4 +9,4 @@ Cape splitter provides the following functionality:
 
 ## Performance 
 
-Tokenization and splitting is done in 3.7 secs for Squad on a MacBook Pro 2015. 
+Tokenization and splitting is done in 3.7 secs for Squad on a MacBook Pro (mid-2015 with 2.2 GHz Intel Core i7). 
