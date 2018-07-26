@@ -30,7 +30,7 @@ jobs:
           name: run tests
           command: |
             . venv/bin/activate
-            mkdir -r test-results/pytest
+            mkdir -R test-results/pytest
             pytest --pyargs cape_splitter.test --junitxml=test-results/pytest/test-results.xml
 
       - store_test_results:
