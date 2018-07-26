@@ -30,7 +30,7 @@ jobs:
           name: run tests
           command: |
             . venv/bin/activate
-            pytest --pyargs cape_splitter.tests --junitxml=test-results.xml
+            pytest --pyargs cape_splitter.test --junitxml=test-results.xml
 
       - store_test_results:
           path: test-results.xml
