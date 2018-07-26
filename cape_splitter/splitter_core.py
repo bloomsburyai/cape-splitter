@@ -3,6 +3,7 @@ import time
 import pyximport
 from collections import OrderedDict
 from dataclasses import dataclass
+from logging import debug
 
 importers = pyximport.install()
 
@@ -30,6 +31,7 @@ class Splitter:
         self.document_groups, self.total_number_words = make_groups(self.document_ids, self.document_texts,
                                                                     self.words_per_group,
                                                                     self.max_overlap_before, self.max_overlap_after)
+        debug(f"Splitted {len(self.document_ids)} documents with {self.total_number_words} words")
 
     def get_chunks(self, number_of_chunks) -> List[List[Tuple[str, int]]]:
         """Get N chunks of groups"""
@@ -44,6 +46,7 @@ class Splitter:
                 else:
                     chunks.append([(text_group.parent_doc_id, text_group.idx)])
                     current_words = text_group.number_of_words
+        debug(f"Obtained {len(chunks)} chunks from splitted groups")
         return chunks
 
 
@@ -60,7 +63,7 @@ if __name__ == '__main__':
 
     tic = time.time()
     spl = Splitter(list(map(str, range(len(squad.get_documents())))), squad.get_documents())
-    print("tokenized all in ", time.time() - tic, "secs")
+    print("Splitted and tokenized all in ", time.time() - tic, "secs")
     pdict(spl.document_groups["0"][0].__dict__)
 
     pdict(spl.document_groups["9"][0].__dict__)
